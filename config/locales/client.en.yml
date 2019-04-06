@@ -1,4 +1,9 @@
 en:
+  js:
+    merge-users:
+      desc: "With this tool you can merge two users together."
+      title: "Merge Users"
+
   admin_js:
     admin:
       user:
