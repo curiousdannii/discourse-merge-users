@@ -6,6 +6,8 @@
 
 add_admin_route 'merge-users.title', 'merge-users'
 
+register_asset 'stylesheets/merge-users.scss'
+
 Discourse::Application.routes.append do
     get '/admin/plugins/merge-users' => 'admin/plugins#index', constraints: StaffConstraint.new
 end
