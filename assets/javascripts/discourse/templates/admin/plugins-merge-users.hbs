@@ -1,5 +1,26 @@
-<div class='admin-title'>
-  <h2>{{i18n 'merge-users.title'}}</h2>
+<div class="admin-title">
+    <h2>{{i18n "merge-users.title"}}</h2>
 </div>
 
-<p>{{i18n 'merge-users.desc'}}</p>
+<p>{{i18n "merge-users.desc"}}</p>
+
+<form class="form-horizontal">
+
+    <div>
+        <label for="source">{{i18n "merge-users.source"}}</label>
+        {{user-selector single="true" usernames=source canReceiveUpdates="true"}}
+    </div>
+
+    <div>
+        <label for="target">{{i18n "merge-users.target"}}</label>
+        {{user-selector single="true" usernames=target canReceiveUpdates="true"}}
+    </div>
+
+    <div class="buttons">
+        {{d-button label="merge-users.title"
+                 icon="exclamation-triangle"
+                 class="btn-danger"
+                 action="mergeUsers")}}
+    </div>
+
+</form>
