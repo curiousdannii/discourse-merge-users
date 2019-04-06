@@ -1,0 +1,6 @@
+en:
+  admin_js:
+    user:
+      merge_into: "Merge Users"
+      merge_into_explaination: "Merge another user into THIS user."
+      merge_into_yes: "Yes, merge these users"
