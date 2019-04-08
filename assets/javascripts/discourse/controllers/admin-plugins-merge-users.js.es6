@@ -1,6 +1,6 @@
 export default Ember.Controller.extend({
-    source: null,
-    target: null,
+    source: 'sourceuser',
+    target: 'targetuser',
 
     noSource: Ember.computed.empty('model.source'),
     noTarget: Ember.computed.empty('model.target'),

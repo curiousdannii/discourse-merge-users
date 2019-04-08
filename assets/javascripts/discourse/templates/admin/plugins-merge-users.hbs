@@ -9,13 +9,15 @@
     <form class="form-horizontal">
 
         <div>
-            <label for="source">{{i18n "merge-users.source"}}</label>
-            {{user-selector single="true" name=source canReceiveUpdates="true"}}
+            <p><b><label for="source">{{i18n "merge-users.source"}}</label></b></p>
+            <p><label for="source">{{i18n "merge-users.source-help"}}</label></p>
+            {{input value=model.source}}
         </div>
 
         <div>
-            <label for="target">{{i18n "merge-users.target"}}</label>
-            {{user-selector single="true" name=target canReceiveUpdates="true"}}
+            <p><b><label for="target">{{i18n "merge-users.target"}}</label></b></p>
+            <p><label for="target">{{i18n "merge-users.target-help"}}</label></p>
+            {{input value=model.target}}
         </div>
 
         <div class="buttons">
