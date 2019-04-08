@@ -1,0 +1,21 @@
+<div>
+    <p><label for="merge-users-source"><b>{{i18n "merge-users.source"}}</b></label></p>
+    <p><label for="merge-users-source">{{i18n "merge-users.source-help"}}</label></p>
+    <p>{{input id="merge-users-source" value=source}}</p>
+</div>
+
+<div>
+    <p><label for="merge-users-target"><b>{{i18n "merge-users.target"}}</b></label></p>
+    <p><label for="merge-users-target">{{i18n "merge-users.target-help"}}</label></p>
+    <p>{{input id="merge-users-target" value=target}}</p>
+</div>
+
+<div class="buttons">
+    {{d-button
+        action=(action "submit")
+        class="btn-danger"
+        disabled=formSubmitted
+        icon="exclamation-triangle"
+        label="merge-users.title"
+    }}
+</div>

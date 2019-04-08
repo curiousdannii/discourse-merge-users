@@ -6,29 +6,6 @@
 
     <p>{{i18n "merge-users.desc"}}</p>
 
-    <form class="form-horizontal">
-
-        <div>
-            <p><b><label for="source">{{i18n "merge-users.source"}}</label></b></p>
-            <p><label for="source">{{i18n "merge-users.source-help"}}</label></p>
-            {{input value=model.source}}
-        </div>
-
-        <div>
-            <p><b><label for="target">{{i18n "merge-users.target"}}</label></b></p>
-            <p><label for="target">{{i18n "merge-users.target-help"}}</label></p>
-            {{input value=model.target}}
-        </div>
-
-        <div class="buttons">
-            {{d-button label="merge-users.title"
-                icon="exclamation-triangle"
-                class="btn-danger"
-                action="mergeUsers"
-                disabled="mergeDisabled"
-            }}
-        </div>
-
-    </form>
+    {{merge-users-form}}
 
 </div>
