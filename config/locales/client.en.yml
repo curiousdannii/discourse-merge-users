@@ -6,7 +6,6 @@ en:
       desc: "With this tool you can merge two users together."
       noempty: "Both the source and target users must be specified."
       source: "Source username"
-      source-help: "Note this user account will be destroyed after the merge!"
       target: "Target username"
-      target-help: "All posts, messages, etc. from the source account will be merged into the target account."
       title: "Merge Users"
+      warning: "All posts, messages, etc. from the source account will be merged into the target account. Note the source account will be destroyed after the merge!"
