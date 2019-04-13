@@ -1,8 +1,15 @@
+import { ajax } from 'discourse/lib/ajax'
+
 export default Ember.Component.extend({
     formSubmitted: false,
 
     actions: {
         submit() {
+            if (this.get('formSubmitted'))
+            {
+                return
+            }
+
             const source = this.get('source')
             const target = this.get('target')
 
@@ -11,6 +18,7 @@ export default Ember.Component.extend({
                 return bootbox.alert(I18n.t('merge-users.noempty'))
             }
 
+            this.set('formSubmitted', true)
             ajax('/admin/plugins/merge-users/merge', {
                 type: 'post',
                 data: {
@@ -19,19 +27,22 @@ export default Ember.Component.extend({
                     target,
                 }
             }).then( response => {
-                if ( !response.source || !response.target )
+                if (!response.source || !response.target)
                 {
                     const errors = []
-                    if ( !response.source )
+                    if (!response.source)
                     {
                         errors.push(I18n.t('merge-users.nouser', source))
                     }
-                    if ( !response.target )
+                    if (!response.target)
                     {
                         errors.push(I18n.t('merge-users.nouser', target))
                     }
+                    this.set('formSubmitted', false)
                     return bootbox.alert(errors.join('<br>'))
                 }
+
+                return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', source, target), resolve) )
             })
         }
     },
