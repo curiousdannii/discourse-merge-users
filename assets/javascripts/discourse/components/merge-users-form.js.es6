@@ -32,17 +32,17 @@ export default Ember.Component.extend({
                     const errors = []
                     if (!response.source)
                     {
-                        errors.push(I18n.t('merge-users.nouser', source))
+                        errors.push(I18n.t('merge-users.nouser', {username: source}))
                     }
                     if (!response.target)
                     {
-                        errors.push(I18n.t('merge-users.nouser', target))
+                        errors.push(I18n.t('merge-users.nouser', {username: target}))
                     }
                     this.set('formSubmitted', false)
                     return bootbox.alert(errors.join('<br>'))
                 }
 
-                return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', source, target), resolve) )
+                return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', {source, target}), resolve) )
             })
         }
     },
