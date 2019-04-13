@@ -6,8 +6,6 @@
 
 add_admin_route 'merge-users.title', 'merge-users'
 
-register_asset 'stylesheets/merge-users.scss'
-
 after_initialize do
 
     module ::MergeUsers
