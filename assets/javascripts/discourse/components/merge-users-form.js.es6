@@ -1,6 +1,6 @@
 import { ajax } from 'discourse/lib/ajax'
 
-class CancelPromiseChainError extends Error {}
+function CancelPromiseChainError() {}
 
 export default Ember.Component.extend({
     formSubmitted: false,
