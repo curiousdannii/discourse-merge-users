@@ -35,6 +35,9 @@ after_initialize do
                         target: !!target_user,
                     }
                 end
+
+                UserMerger.new(source_user, target_user).merge!
+                render json: { success: 1 }
             end
 
         end

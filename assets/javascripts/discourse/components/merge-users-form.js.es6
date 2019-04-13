@@ -1,5 +1,7 @@
 import { ajax } from 'discourse/lib/ajax'
 
+class CancelPromiseChainError extends Error {}
+
 export default Ember.Component.extend({
     formSubmitted: false,
 
@@ -38,12 +40,48 @@ export default Ember.Component.extend({
                     {
                         errors.push(I18n.t('merge-users.nouser', {username: target}))
                     }
-                    this.set('formSubmitted', false)
-                    return bootbox.alert(errors.join('<br>'))
+                    bootbox.alert(errors.join('<br>'))
+                    throw new CancelPromiseChainError()
                 }
 
                 return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', {source, target}), resolve) )
             })
+            .then( response => {
+                if (!response)
+                {
+                    throw new CancelPromiseChainError()
+                }
+
+                return ajax('/admin/plugins/merge-users/merge', {
+                    type: 'post',
+                    data: {
+                        source,
+                        target,
+                    }
+                })
+            })
+            .then( response => {
+                bootbox.alert(I18n.t('merge-users.begun', {source, target}))
+                this.setProperties({
+                    source: '',
+                    target: '',
+                })
+            })
+            .catch( error => {
+                if (error instanceof CancelPromiseChainError)
+                {
+                    return
+                }
+                if (error.responseJSON && error.responseJSON.errors)
+                {
+                    bootbox.alert(I18n.t('generic_error_with_reason', {error: error.responseJSON.errors[0]}))
+                }
+                else
+                {
+                    bootbox.alert(I18n.t('generic_error'))
+                }
+            })
+            .finally(() => this.set('formSubmitted', false))
         }
     },
 })
