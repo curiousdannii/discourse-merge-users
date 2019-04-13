@@ -34,14 +34,10 @@ after_initialize do
                     }
                 end
 
-                send_message = -> (ev_source, ev_target) do
-                    if ev_source.id == source_user.id && ev_target.id == target_user.id
-                        DiscourseEvent.off(:merging_users, &send_message)
-                    end
-                end
-
-                DiscourseEvent.on(:merging_users, &send_message)
-                UserMerger.new(source_user, target_user).merge!
+                Thread.new {
+                    UserMerger.new(source_user, target_user).merge!
+                    
+                }
                 render json: { success: 1 }
             end
 
