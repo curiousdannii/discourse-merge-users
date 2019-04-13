@@ -8,10 +8,6 @@ add_admin_route 'merge-users.title', 'merge-users'
 
 register_asset 'stylesheets/merge-users.scss'
 
-Discourse::Application.routes.append do
-    get '/admin/plugins/merge-users' => 'admin/plugins#index', constraints: StaffConstraint.new
-end
-
 after_initialize do
 
     module ::MergeUsers
@@ -26,6 +22,21 @@ after_initialize do
                 render_serialized Discourse.visible_plugins, AdminPluginSerializer, root: 'plugins'
             end
 
+            def merge
+                params.require(:source)
+                params.require(:target)
+
+                source_user = User.find_by_username(params[:source])
+                target_user = User.find_by_username(params[:target])
+
+                if params[:check].present?
+                    return render json: {
+                        source: !!source_user,
+                        target: !!target_user,
+                    }
+                end
+            end
+
         end
 
         class Engine < ::Rails::Engine
@@ -36,7 +47,7 @@ after_initialize do
 
     MergeUsers::Engine.routes.draw do
         root to: 'merge_users#index'
-        get 'check' => 'merge_users#check'
+        post 'merge' => 'merge_users#merge'
     end
 
     Discourse::Application.routes.append do
