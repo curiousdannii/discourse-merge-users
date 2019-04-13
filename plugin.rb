@@ -24,8 +24,11 @@ after_initialize do
                 params.require(:source)
                 params.require(:target)
 
-                source_user = User.find_by_username(params[:source])
-                target_user = User.find_by_username(params[:target])
+                source = params[:source]
+                target = params[:target]
+
+                source_user = User.find_by_username(source)
+                target_user = User.find_by_username(target)
 
                 if params[:check].present?
                     return render json: {
@@ -36,11 +39,18 @@ after_initialize do
 
                 Thread.new {
                     UserMerger.new(source_user, target_user).merge!
-                    
+                    PostCreator.new(Discourse.system_user,
+                       title: I18n.t('merge-users.users-merged.subject_template'),
+                       raw: I18n.t('merge-users.users-merged.text_body_template', { source: source, target: target }),
+                       archetype: Archetype.private_message,
+                       target_usernames: [target, current_user.username].join(','),
+                       target_group_names: Group.exists?(name: SiteSetting.site_contact_group_name) ? SiteSetting.site_contact_group_name : nil,
+                       subtype: TopicSubtype.system_message,
+                       skip_validations: true
+                    ).create!
                 }
                 render json: { success: 1 }
             end
-
         end
 
         class Engine < ::Rails::Engine

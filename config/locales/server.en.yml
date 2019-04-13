@@ -1,0 +1,9 @@
+en:
+  merge-users:
+    users-merged:
+      title: "Users Merged"
+      subject_template: "Users Merged"
+      text_body_template: |
+        Hello,
+
+        The user **%{source}** has now been fully merged into **%{target}**.
