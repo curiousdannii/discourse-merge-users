@@ -2,6 +2,8 @@
 
 With this plugin you can easily merge two users together.
 
+Discuss this plugin [at the Discourse forum](https://meta.discourse.org/t/merge-users-plugin/114917).
+
 ![Screenshot of the Merge Users admin panel](screenshot.png)
 
 ## Installation
