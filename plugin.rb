@@ -41,8 +41,8 @@ after_initialize do
                 Thread.new {
                     UserMerger.new(source_user, target_user).merge!
                     PostCreator.new(Discourse.system_user,
-                       title: I18n.t('merge-users.users-merged.subject_template'),
-                       raw: I18n.t('merge-users.users-merged.text_body_template', { source: source, target: target }),
+                       title: I18n.t('merge-users.message.subject_template'),
+                       raw: I18n.t('merge-users.message.text_body_template', { source: source, target: target }),
                        archetype: Archetype.private_message,
                        target_usernames: [target, admin_user.username].join(','),
                        target_group_names: Group.exists?(name: SiteSetting.site_contact_group_name) ? SiteSetting.site_contact_group_name : nil,

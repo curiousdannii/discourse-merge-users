@@ -1,6 +1,6 @@
 en:
   merge-users:
-    users-merged:
+    message:
       title: "Users Merged"
       subject_template: "Users Merged"
       text_body_template: |
