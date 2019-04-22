@@ -1,9 +1,11 @@
 import { ajax } from 'discourse/lib/ajax'
+import { setting } from 'discourse/lib/computed'
 
 function CancelPromiseChainError() {}
 
 export default Ember.Component.extend({
     formSubmitted: false,
+    messageTarget: setting('merge_users_message_target'),
 
     actions: {
         submit() {

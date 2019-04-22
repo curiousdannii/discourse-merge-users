@@ -7,3 +7,5 @@ en:
         Hello,
 
         The user **%{source}** has now been fully merged into **%{target}**.
+  site_settings:
+    merge_users_message_target: "By default send a message to the target account once the merge is finished."

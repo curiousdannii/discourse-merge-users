@@ -1,0 +1,4 @@
+plugins:
+  merge_users_message_target:
+    client: true
+    default: true

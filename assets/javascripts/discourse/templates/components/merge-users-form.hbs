@@ -8,8 +8,14 @@
     <p>{{input id="merge-users-target" value=target}}</p>
 </div>
 
+<div>
+    <p><label>
+        {{input type="checkbox" checked=messageTarget}}
+        {{i18n "merge-users.message-target"}}
+    </label></p>
+</div>
+
 <div class="buttons">
-    <p>{{i18n "merge-users.warning"}}</p>
     {{d-button
         action=(action "submit")
         class="btn-danger"
