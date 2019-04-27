@@ -1,5 +1,6 @@
 import { ajax } from 'discourse/lib/ajax'
 import { setting } from 'discourse/lib/computed'
+import showModal from 'discourse/lib/show-modal'
 
 function CancelPromiseChainError() {}
 
@@ -47,7 +48,14 @@ export default Ember.Component.extend({
                     throw new CancelPromiseChainError()
                 }
 
-                return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', {source, target}), resolve) )
+                return new Promise( (resolve, reject) => {
+                    const controller = showModal('merge-users-confirmation')
+                    controller.setProperties({
+                        resolve,
+                        source,
+                        target,
+                    })
+                })
             })
             .then( response => {
                 if (!response)

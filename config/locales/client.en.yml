@@ -3,6 +3,7 @@ en:
     merge-users:
       begun: "Now merging {{source}} into {{target}}. "
       confirm: "Are you sure you want to merge {{source}} into {{target}}? This cannot be reversed!"
+      confirm-label: "Confirm"
       desc: "With this tool you can merge two users together. All posts, messages, etc. from the source account will be merged into the target account. Note the source account will be destroyed after the merge!"
       message-admin: "You will receive a message when it is complete."
       message-both: "You and the target user will receive a message when it is complete."
