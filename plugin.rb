@@ -32,8 +32,10 @@ after_initialize do
 
                 if params[:check] == "1"
                     return render json: {
-                        source: !!source_user,
-                        target: !!target_user,
+                        source: BasicUserSerializer.new(source_user, root: false).as_json,
+                        target: BasicUserSerializer.new(target_user, root: false).as_json,
+                        #source: !!source_user,
+                        #target: !!target_user,
                     }
                 end
 
