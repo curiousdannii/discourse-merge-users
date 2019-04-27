@@ -8,5 +8,5 @@
 
 <div class='modal-footer'>
     {{d-button class="btn-primary" action=(action "confirm") label="merge-users.dialog.confirm-label"}}
-    {{d-modal-cancel close=(action "cancel") label="merge-users.dialog.cancel"}}
+    {{d-modal-cancel close=(route-action "closeModal") label="merge-users.dialog.cancel"}}
 </div>
