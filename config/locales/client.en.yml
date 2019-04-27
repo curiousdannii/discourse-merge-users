@@ -13,6 +13,8 @@ en:
         cancel: "Cancel"
         confirm: "Are you sure you want to merge {{source}} into {{target}}? This cannot be reversed!"
         confirm-label: "Confirm"
+        source: "Source:"
+        target: "Target:"
       form:
         send-message: "Message the target user once the merge is complete."
         source: "Source username"

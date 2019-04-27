@@ -5,11 +5,6 @@ export default Ember.Controller.extend(ModalFunctionality, {
     target: null,
 
     actions: {
-        /*cancel() {
-            this.resolve(0)
-            this.send('closeModal')
-        },*/
-
         confirm() {
             this.get('resolve')(1)
             this.send('closeModal')
