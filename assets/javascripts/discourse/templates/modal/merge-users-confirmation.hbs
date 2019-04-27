@@ -1,10 +1,12 @@
 {{#d-modal-body title="merge-users.title"}}
 
-    <p>{{i18n "merge-users.confirm" source=source target=target}}</p>
+    <p>{{i18n "merge-users.dialog.confirm" source=source.username target=target.username}}</p>
+
+    <p></p>
 
 {{/d-modal-body}}
 
 <div class='modal-footer'>
-    {{d-button class="btn-primary" action=(action "confirm") label="merge-users.confirm-label"}}
-    {{d-modal-cancel close=(action "cancel") label="merge-users.cancel-label"}}
+    {{d-button class="btn-primary" action=(action "confirm") label="merge-users.dialog.confirm-label"}}
+    {{d-modal-cancel close=(action "cancel") label="merge-users.dialog.cancel"}}
 </div>

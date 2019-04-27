@@ -21,7 +21,7 @@ export default Ember.Component.extend({
 
             if (!source || !target)
             {
-                return bootbox.alert(I18n.t('merge-users.noempty'))
+                return bootbox.alert(I18n.t('merge-users.alerts.noempty'))
             }
 
             this.set('formSubmitted', true)
@@ -33,28 +33,31 @@ export default Ember.Component.extend({
                     target,
                 }
             }).then( response => {
-                if (!response.source || !response.target)
+                const source_user = response.source
+                const target_user = response.target
+
+                if (!source_user || !target_user)
                 {
                     const errors = []
-                    if (!response.source)
+                    if (!source_user)
                     {
-                        errors.push(I18n.t('merge-users.nouser', {username: source}))
+                        errors.push(I18n.t('merge-users.alerts.nouser', {username: source}))
                     }
-                    if (!response.target)
+                    if (!target_user)
                     {
-                        errors.push(I18n.t('merge-users.nouser', {username: target}))
+                        errors.push(I18n.t('merge-users.alerts.nouser', {username: target}))
                     }
                     bootbox.alert(errors.join('<br>'))
                     throw new CancelPromiseChainError()
                 }
 
-                //return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', {source, target}), resolve) )
+                //return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.alerts.confirm', {source, target}), resolve) )
                 return new Promise( (resolve, reject) => {
                     const controller = showModal('merge-users-confirmation')
                     controller.setProperties({
                         resolve,
-                        source,
-                        target,
+                        source: source_user,
+                        target: target_user,
                     })
                 })
             })
@@ -74,7 +77,7 @@ export default Ember.Component.extend({
                 })
             })
             .then( response => {
-                bootbox.alert(I18n.t('merge-users.begun', {source, target}) + I18n.t(messageTarget ? 'merge-users.message-both' : 'merge-users.message-admin'))
+                bootbox.alert(I18n.t('merge-users.alerts.begun', {source, target}) + I18n.t(messageTarget ? 'merge-users.alerts.message-both' : 'merge-users.alerts.message-admin'))
                 this.setProperties({
                     source: '',
                     target: '',
