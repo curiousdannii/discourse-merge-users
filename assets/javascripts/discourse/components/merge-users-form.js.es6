@@ -48,7 +48,7 @@ export default Ember.Component.extend({
                     throw new CancelPromiseChainError()
                 }
 
-                return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', {source, target}), resolve) )
+                //return new Promise( (resolve, reject) => bootbox.confirm(I18n.t('merge-users.confirm', {source, target}), resolve) )
                 return new Promise( (resolve, reject) => {
                     const controller = showModal('merge-users-confirmation')
                     controller.setProperties({
