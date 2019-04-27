@@ -4,8 +4,20 @@
 
     <p>
         {{i18n "merge-users.dialog.source"}}
-        {{avatar source imageSize="small"}}
-        {{#link-to 'adminUser' source}}{{unbound source.username}}{{/link-to}}
+        {{#link-to 'adminUser' source}}
+            {{avatar source imageSize="small"}}
+            {{source.username}}
+        {{/link-to}}
+        {{#if source.name}}({{source.name}}){{/if}}
+    </p>
+
+    <p>
+        {{i18n "merge-users.dialog.target"}}
+        {{#link-to 'adminUser' target}}
+            {{avatar target imageSize="small"}}
+            {{target.username}}
+        {{/link-to}}
+        {{#if target.name}}({{target.name}}){{/if}}
     </p>
 
 {{/d-modal-body}}
