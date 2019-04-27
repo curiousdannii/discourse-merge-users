@@ -1,3 +1,4 @@
+import AdminUser from 'admin/models/admin-user'
 import { ajax } from 'discourse/lib/ajax'
 import { setting } from 'discourse/lib/computed'
 import showModal from 'discourse/lib/show-modal'
@@ -56,8 +57,8 @@ export default Ember.Component.extend({
                     const controller = showModal('merge-users-confirmation')
                     controller.setProperties({
                         resolve,
-                        source: source_user,
-                        target: target_user,
+                        source: AdminUser.create(source_user),
+                        target: AdminUser.create(target_user),
                     })
                 })
             })
@@ -95,6 +96,7 @@ export default Ember.Component.extend({
                 else
                 {
                     bootbox.alert(I18n.t('generic_error'))
+                    throw error
                 }
             })
             .finally(() => this.set('formSubmitted', false))

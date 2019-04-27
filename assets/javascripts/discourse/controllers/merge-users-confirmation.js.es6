@@ -16,8 +16,8 @@ export default Ember.Controller.extend(ModalFunctionality, {
         this.get('resolve')(0)
     },
 
-    @computed("confirmTarget", "target")
+    /*@computed("confirmTarget", "target")
     submitDisabled(confirmTarget, target) {
         return confirmTarget != target
-    },
+    },*/
 })
