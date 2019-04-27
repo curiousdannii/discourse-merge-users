@@ -29,13 +29,17 @@ after_initialize do
 
                 source_user = User.find_by_username(source)
                 target_user = User.find_by_username(target)
-                admin_user = current_user
 
-                if params[:check].present?
+                if params[:check] == "1"
                     return render json: {
                         source: !!source_user,
                         target: !!target_user,
                     }
+                end
+
+                message_users = [current_user.username]
+                if params[:messageTarget] == "1"
+                    message_users.push(target)
                 end
 
                 Thread.new {
@@ -44,7 +48,7 @@ after_initialize do
                        title: I18n.t('merge-users.message.subject_template'),
                        raw: I18n.t('merge-users.message.text_body_template', { source: source, target: target }),
                        archetype: Archetype.private_message,
-                       target_usernames: [target, admin_user.username].join(','),
+                       target_usernames: message_users.join(','),
                        target_group_names: Group.exists?(name: SiteSetting.site_contact_group_name) ? SiteSetting.site_contact_group_name : nil,
                        subtype: TopicSubtype.system_message,
                        skip_validations: true

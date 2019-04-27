@@ -14,6 +14,7 @@ export default Ember.Component.extend({
                 return
             }
 
+            const messageTarget = this.get('messageTarget') ? 1 : 0
             const source = this.get('source')
             const target = this.get('target')
 
@@ -57,13 +58,14 @@ export default Ember.Component.extend({
                 return ajax('/admin/plugins/merge-users/merge', {
                     type: 'post',
                     data: {
+                        messageTarget,
                         source,
                         target,
                     }
                 })
             })
             .then( response => {
-                bootbox.alert(I18n.t('merge-users.begun', {source, target}))
+                bootbox.alert(I18n.t('merge-users.begun', {source, target}) + I18n.t(messageTarget ? 'merge-users.message-both' : 'merge-users.message-admin'))
                 this.setProperties({
                     source: '',
                     target: '',
