@@ -8,9 +8,7 @@
             {{avatar source imageSize="small"}}
             {{source.username}}
         {{/link-to}}
-        {{#if source.name}}
-            ({{source.name}})
-        {{/if}}
+        {{#if source.name}}({{source.name}}){{/if}}
     </p>
 
     <p>
@@ -19,14 +17,25 @@
             {{avatar target imageSize="small"}}
             {{target.username}}
         {{/link-to}}
-        {{#if target.name}}
-            ({{target.name}})
-        {{/if}}
+        {{#if target.name}}({{target.name}}){{/if}}
     </p>
+
+    <div>
+        <p><label for="merge-users-confirm-target"><b>{{i18n "merge-users.dialog.confirm-target"}}</b></label></p>
+        <p>{{input id="merge-users-confirm-target" value=confirmTarget}}</p>
+    </div>
 
 {{/d-modal-body}}
 
 <div class='modal-footer'>
-    {{d-button class="btn-primary" action=(action "confirm") label="merge-users.dialog.confirm-label"}}
-    {{d-modal-cancel close=(route-action "closeModal") label="merge-users.dialog.cancel"}}
+    {{d-button
+        action=(action "confirm")
+        class="btn-primary"
+        disabled=submitDisabled
+        label="merge-users.dialog.confirm-label"
+    }}
+    {{d-modal-cancel
+        close=(route-action "closeModal")
+        label="merge-users.dialog.cancel"
+    }}
 </div>
