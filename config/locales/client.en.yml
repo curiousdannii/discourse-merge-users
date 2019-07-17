@@ -8,7 +8,7 @@ en:
         message-both: "You and the target user will receive a message when it is complete."
         noempty: "Both the source and target users must be specified."
         nouser: "Unknown username: {{username}}"
-      desc: "With this tool you can merge two users together. All posts, messages, etc. from the source account will be merged into the target account. Note the source account will be destroyed after the merge!"
+      desc: "With this tool you can merge two users together. All posts, messages, etc. from the source account will be merged into the target account. Note the source account will be destroyed after the merge. This is performance intensive, so do not attempt to merge more than one pair of users at a time."
       dialog:
         cancel: "Cancel"
         confirm: "Are you sure you want to merge {{source}} into {{target}}? This cannot be reversed!"
